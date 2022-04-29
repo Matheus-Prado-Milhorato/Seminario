@@ -1,5 +1,5 @@
 # Seminario
-##Sobre o Projeto:
+#Sobre o Projeto:
 A palavra Devops foi criada a partir da convergência dos termos desenvolvimento (development) e Operações (operations) que foi apresentada ao público pela primeira vez em uma palestra em 2009 chamada "10+ Deploys Per Day", com o objetivo de ter uma colaboração entre as equipes citadas tendo assim melhores entregas, conforme a necessidade do negócio. 
 
 Devops é uma combinação de ferramentas que aumentam a capacidade de estruturação de softwares e serviços em uma grande escalabilidade de velocidade, sendo uma prática para unir o desenvolvimento de software com a operação, logo unificar as áreas, alcançando uma melhor qualidade de entrega. 
