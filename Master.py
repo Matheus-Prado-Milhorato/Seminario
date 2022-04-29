@@ -1,27 +1,60 @@
-def quick_sort(a, ini=0, fim=None):
-    fim = fim if fim is not None else len(a)
-    if ini < fim:
-        pp = particao(a, ini, fim)
-        quick_sort(a, ini, pp)
-        quick_sort(a, pp + 1, fim)
-    return a
+from random import randint
 
-def particao(a, ini, fim):
-    # para uma versão com partição aleatória
-    # descomente as próximas três linhas:
-    # from random import randrange
-    # rand = randrange(ini, fim)
-    # a[rand], a[fim - 1] = a[fim - 1], a[rand]
-    pivo = a[fim - 1]
-    for i in range(ini, fim):
-        if a[i] > pivo:
-            fim += 1
+def partition (A, a, b):
+    p = randint(a,b)
+    # or mid point
+    # p = (a + b) / 2
+
+    piv = A[p]
+
+    # swap the pivot with the end of the array
+    A[p] = A[b]
+    A[b] = piv
+
+    i = a     # left index (right movement ->)
+    j = b - 1 # right index (left movement <-)
+
+    while i <= j:
+        # move right if smaller/eq than/to piv
+        while A[i] <= piv and i <= j:
+            i += 1
+        # move left if greater/eq than/to piv
+        while A[j] >= piv and j >= i:
+            j -= 1
+
+        # indices stopped moving:
+        if i < j:
+            # swap
+            t = A[i]
+            A[i] = A[j]
+            A[j] = t
+    # place pivot back in the right place
+    # all values < pivot are to its left and 
+    # all values > pivot are to its right
+    A[b] = A[i]
+    A[i] = piv
+
+    return i
+
+def IpQuickSort (A, a, b):
+
+    while a < b:
+        p = partition(A, a, b) # p is pivot's location
+
+        #sort the smaller partition
+        if p - a < b - p:
+            IpQuickSort(A,a,p-1)
+            a = p + 1 # partition less than p is sorted
         else:
-            fim += 1
-            ini += 1
-            a[i], a[ini - 1] = a[ini - 1], a[i]
-    return ini - 1
+            IpQuickSort(A,p+1,b)
+            b = p - 1 # partition greater than p is sorted
 
-a = [8, 5, 12, 55, 3, 7, 82, 44, 35, 25, 41, 29, 17]
-print(a)
-print(quick_sort(a))
+
+def main():
+    #teste com o vetor preenchido
+    A =  [12,3,5,4,7,3,1,3]
+    print A
+    IpQuickSort(A,0,len(A)-1)
+    print A
+
+if __name__ == "__main__": main()
